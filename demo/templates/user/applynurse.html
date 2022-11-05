@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Nurse-Detail</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class='text-warning border-bottom pb-2'>Desbord</h1>
+            <div class="col-md-2">
+                <div class="border-right h-100 bo1">
+                    <div class='text-center mt-5'>
+                        <i class="fas fa-user-circle fa-4x"></i>
+                        <h3 class='mt-3 st-font'>{{name.Name}}</h3>
+                    </div>
+                    <hr>
+                    <nav class="nav flex-column text-center">
+                        <a href="{% url 'usersearch' %}" class="nav-link">Select Field</a>
+                        <a href="{% url 'applynurse' %}" class="nav-link active">Applay Nurse</a>
+                        <a href="#" class="nav-link">Nurse Detail</a>
+                        <a href="{% url 'status' %}" class="nav-link">Satus</a>
+                        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-10 mb-5">
+            <h1 class='text-danger border-bottom pb-2'>Book Nurse</h1>
+                <div class="row">
+                    <div class="offset-4 col-sm-8 mt-2">
+                        {% for msg in messages %}
+                            {% if msg %}
+                                <p class='text-danger msg'>{{msg}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% for time in time %}
+                        <div class="col-md-4 mt-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{time.join_N.Nurse_name}}</h5>
+                                    <p class="card-text mt-3">Specialist : {{time.join_N.Nurse_specialist}}</p>
+                                    <p class="card-text">Email : {{time.join_N.Nurse_email}}</p>
+                                    <p class="card-text">expirence : {{time.join_N.Nurse_expirence}}</p>
+                                    <p class="card-text">Date : {{time.Date}}</p>
+                                    <p class="card-text">Time : {{time.Start_time}} to {{time.End_time}}</p>
+                                    <p class="card-text">Fees : {{time.join_N.Nurse_fees}}</p>
+
+                                    <a href="{% url 'booknurse' time.join_N.id %}"><input type="submit" class="btn btn-primary" value='Book Now'></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+</body>
+</html>

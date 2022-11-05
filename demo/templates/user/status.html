@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Nurse-Detail</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class='text-warning border-bottom pb-2'>Dashboard</h1>
+            <div class="col-md-2">
+                <div class="border-right h-100 bo1">
+                    <div class='text-center mt-5'>
+                        <i class="fas fa-user-circle fa-4x"></i>
+                        <h3 class='mt-3 st-font'>{{name.Name}}</h3>
+                    </div>
+                    <hr>
+                    <nav class="nav flex-column text-center">
+                        <a href="{% url 'usersearch' %}" class="nav-link">Select Field</a>
+                        <a href="{% url 'applynurse' %}" class="nav-link">Applay Nurse</a>
+                        <a href="" class="nav-link">Nurse Detail</a>
+                        <a href="#" class="nav-link active">Satus</a>
+                        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-10 mb-5">
+            <h1 class='text-danger border-bottom pb-2'>status</h1>
+                <div class="row">
+                    {% for data in data %}
+                        <div class="col-md-4 mt-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Name : {{data.joinNurse.Nurse_name}}</h5>
+                                    <p class="card-text mt-3">Specialist : {{data.joinNurse.Nurse_specialist}}</p>
+                                    <p class="card-text">Email : {{data.joinNurse.Nurse_email}}</p>
+                                    <p class="card-text">expirence : {{data.joinNurse.Nurse_expirence}}</p>
+                                    <p class="card-text">Date : {{data.joinshedule.Date}}</p>
+                                    <p class="card-text">Time : {{data.joinshedule.Start_time}} to {{data.joinshedule.End_time}}</p>
+                                    <p class="card-text">Fees : {{data.joinNurse.Nurse_fees}}</p>
+                                    <p class="card-text">Special Requriment for you : {{data.Message}}</p>
+
+                                    <a href="{% url 'delete' data.id %}"><input type="button" class="btn btn-primary" onclick="return confirm('Are You Sure? {{data.Name}}');" value='cancle Shedule'></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+</body>
+</html>

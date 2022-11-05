@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>login</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class='text-warning border-bottom pb-2'>Signup</h1>
+            <div class="col-sm-8">
+                <img src="{% static 'img/signup.jpg' %}" alt="bg img" width=100%>
+            </div>
+            <div class="col-sm-4 border-start">
+                <h1 class='text-primary pb-2 mt-5 mx-5'>Signup Here.</h1>
+               <form method='post'>
+                {% csrf_token %}
+                    <div class="row mt-5">
+                        {% for msg in messages %}
+                            {% if msg %}
+                            <script>alert("{{msg}}")</script>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="form-group offset-2 col-sm-8">
+                            <label for="Inputname">Your Name *</label>
+                            <input type="text" name='Name' class='form-control' id='Inputname'>
+                        </div><br>
+
+                        <div class="form-group offset-2 col-sm-8 mt-3">
+                            <label for="Inputname">your Email *</label>
+                            <input type="email" name='Email' class='form-control' id='InputEmail'>
+                        </div><br>
+
+                        <div class="form-group offset-2 col-sm-8 mt-3">
+                            <label for="Inputname">Mobile Number *</label>
+                            <input type="number" name='Number' class='form-control' id='Inputnumber'>
+                        </div><br>
+
+                        <div class="form-group offset-2 col-sm-8 mt-3">
+                            <label for="Inputname">Password *</label>
+                            <input type="password" name='Password' class='form-control' id='inputPassword'>
+                        </div><br>
+
+                        <div class="form-group offset-2 col-sm-8 mt-3">
+                            <label for="Inputname">Confirm Password *</label>
+                            <input type="password" name='Confirm_password' class='form-control' id='Inputcpassword'>
+                        </div><br>
+                        
+                        <div class="form-group offset-2 col-sm-8 mt-3">
+                            <button class='btn btn-primary' type='submit'>Submit</button>
+                            <button class='btn btn-primary mx-3' type='Reset'>Reset</button>
+                        </div>
+                        <div class="offset-3 col-sm-7 mt-4 reg">
+                            <a href="{% url 'login' %}">you have already Register?</a>
+                        </div>
+                    </div>
+                </form>
+                    
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+</body>
+</html>
